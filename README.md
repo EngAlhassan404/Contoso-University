@@ -25,8 +25,6 @@
 ---
 
 ### 2. البنية الهيكلية للملفات والمجلدات (Project Structure)
-تم تنظيم المشروع بالكامل داخل المجلد:
-`d:\هندسة الحاسوب\واجب الويب\ContosoUniversity`
 
 ```text
 ContosoUniversity/
