@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "About";
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="mb-3 text-primary">About Contoso University</h2>
+            <div class="card p-4 shadow-sm mb-4">
+                <h4>Course: Web Development Assignment (واجب الويب)</h4>
+                <p class="lead">
+                    This web application implements the Microsoft Learn tutorial:
+                    <strong>"Tutorial: Get started with EF Core in an ASP.NET MVC web app"</strong>.
+                </p>
+                <hr />
+                <h5>Features Implemented:</h5>
+                <ul>
+                    <li>ASP.NET Core MVC architecture with Controllers, Models, and Views</li>
+                    <li>Entity Framework Core ORM with <code>SchoolContext</code></li>
+                    <li>Entities: <code>Student</code>, <code>Course</code>, <code>Enrollment</code></li>
+                    <li>Relationships: One-to-many navigation properties and nullable Enum grades</li>
+                    <li>Database Seeding via <code>DbInitializer.Initialize()</code> using <code>EnsureCreated()</code></li>
+                    <li>Asynchronous CRUD operations with <code>async/await</code> and <code>ToListAsync()</code></li>
+                    <li>SQL Logging and Developer Exception Filter configuration</li>
+                </ul>
+                <div class="alert alert-primary mt-3 mb-0">
+                    <strong>Developer / Engineer:</strong> Eng.Alhassan Ali Bahbah
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
