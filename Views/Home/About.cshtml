@@ -4,27 +4,47 @@
 
 <div class="container py-4">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <h2 class="mb-3 text-primary">About Contoso University</h2>
             <div class="card p-4 shadow-sm mb-4">
-                <h4>Course: Web Development Assignment (واجب الويب)</h4>
+                <div class="alert alert-secondary mb-3">
+                    <h5 class="mb-1 text-dark"><strong>جامعة حضرموت | كلية الهندسة والبترول</strong></h5>
+                    <p class="mb-0 text-muted">قسم هندسة الحاسوب - المستوى الخامس (سنة التخرج) | واجب الويب</p>
+                </div>
+
                 <p class="lead">
-                    This web application implements the Microsoft Learn tutorial:
-                    <strong>"Tutorial: Get started with EF Core in an ASP.NET MVC web app"</strong>.
+                    تطبيق ويب تعليمي شامل مطبق وفق دليلي مايكروسوفت:
+                    <br />
+                    <strong>1. Tutorial: Get started with EF Core in an ASP.NET MVC web app</strong>
+                    <br />
+                    <strong>2. Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core</strong>
                 </p>
                 <hr />
-                <h5>Features Implemented:</h5>
+                <h5>الميزات والخصائص البرمجية المنفذة:</h5>
                 <ul>
-                    <li>ASP.NET Core MVC architecture with Controllers, Models, and Views</li>
-                    <li>Entity Framework Core ORM with <code>SchoolContext</code></li>
-                    <li>Entities: <code>Student</code>, <code>Course</code>, <code>Enrollment</code></li>
-                    <li>Relationships: One-to-many navigation properties and nullable Enum grades</li>
-                    <li>Database Seeding via <code>DbInitializer.Initialize()</code> using <code>EnsureCreated()</code></li>
-                    <li>Asynchronous CRUD operations with <code>async/await</code> and <code>ToListAsync()</code></li>
-                    <li>SQL Logging and Developer Exception Filter configuration</li>
+                    <li>بنية معمارية MVC متكاملة باستخدام ASP.NET Core و EF Core (Code-First).</li>
+                    <li>نماذج البيانات: <code>Student</code>, <code>Course</code>, <code>Enrollment</code> مع علاقات الربط.</li>
+                    <li>تخصيص أسماء الجداول المفردة وإعداد سياق البيانات <code>SchoolContext</code>.</li>
+                    <li>تغذية البيانات الأولية (Seeding) عبر <code>DbInitializer</code> وتضمين بيانات الطالب.</li>
+                    <li>عمليات CRUD متطورة وغير متزامنة <code>async/await</code> مع <code>ToListAsync()</code>.</li>
+                    <li>أمان متقدم ضد هجمات الـ Overposting باستخدام <code>TryUpdateModelAsync</code> و <code>Bind</code>.</li>
+                    <li>تحسين الأداء باستخدام استعلامات <code>AsNoTracking()</code> والتحميل المترابط <code>Include / ThenInclude</code>.</li>
+                    <li>معالجة استثناءات الحفظ والحذف <code>DbUpdateException</code> وإظهار التنبيهات المناسبة للمستخدم.</li>
                 </ul>
-                <div class="alert alert-primary mt-3 mb-0">
-                    <strong>Developer / Engineer:</strong> Eng.Alhassan Ali Bahbah
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="alert alert-primary mb-0">
+                            <strong>إعداد المهندس:</strong> الحسن علي باحبه
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-success mb-0">
+                            <strong>إشراف:</strong> م/ عصمت فرج القبس
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 text-muted small">
+                    <strong>تاريخ الإنجاز:</strong> 19 نوفمبر 2026م
                 </div>
             </div>
         </div>
