@@ -1,5 +1,5 @@
 # Contoso University - ASP.NET Core MVC & Entity Framework Core
-## تطبيق عملي وفق دليل Microsoft Learn (الدرس الأول - Tutorial 01)
+## تطبيق عملي شامل وفق دليلي Microsoft Learn (الدرس الأول والثاني - Tutorials 01 & 02)
 
 **إعداد وإشراف المهندس / المطور:**  
 `Eng.Alhassan Ali Bahbah`
@@ -7,8 +7,9 @@
 ---
 
 ### 1. نظرة عامة على المشروع (Project Overview)
-تم بناء هذا المشروع بدقة وتطابق كامل مع خطوات الدليل الرسمي لشركة مايكروسوفت:
-**"Tutorial: Get started with EF Core in an ASP.NET MVC web app | Microsoft Learn"**
+تم بناء هذا المشروع بدقة وتطابق كامل مع خطوات الأدلة الرسمية لشركة مايكروسوفت:
+1. **Tutorial 01: Get started with EF Core in an ASP.NET MVC web app | Microsoft Learn**
+2. **Tutorial 02: Implement CRUD Functionality - ASP.NET MVC with EF Core | Microsoft Learn**
 
 يقدم المشروع نظام إدارة لجامعة افتراضية (**Contoso University**) باستخدام إطار العمل **ASP.NET Core MVC** ونظام إدارة الكائنات العلائقية **Entity Framework Core (EF Core)** بنمط **Code-First**.
 
@@ -22,11 +23,12 @@
 ContosoUniversity/
 │
 ├── ContosoUniversity.sln           # ملف الحل لفتحه مباشرة في Visual Studio
-├── ContosoUniversity.csproj        # ملف إعدادات المشروع وحزم NuGet
+├── ContosoUniversity.csproj        # ملف إعدادات المشروع وحزم NuGet بخاصية RollForward
 ├── Program.cs                      # نقطة انطلاق التطبيق وإعداد الخدمات وحقن التبعيات
 ├── appsettings.json                # ملف التكوينات وسلسلة الاتصال بقاعدة البيانات
 ├── appsettings.Development.json    # إعدادات بيئة التطوير وتسجيل أوامر SQL (Logging)
 ├── ContosoUniversity_Database.sql  # سكربت SQL كامل للجداول والبيانات الأولية (جاهز لـ MySQL / SQL Server)
+├── README.md                       # دليل التوثيق الكامل للمشروع
 │
 ├── Models/                         # نماذج البيانات (Data Entities)
 │   ├── Student.cs                  # كيان الطالب (يتضمن علاقة Enrollments)
@@ -40,7 +42,7 @@ ContosoUniversity/
 │
 ├── Controllers/                    # المتحكمات
 │   ├── HomeController.cs           # متحكم الصفحة الرئيسية، نبذة عن المشروع (About)، وسياسة الخصوصية
-│   └── StudentsController.cs       # متحكم إدارة الطلاب مع كامل عمليات CRUD غير المتزامنة (Async/Await)
+│   └── StudentsController.cs       # متحكم إدارة الطلاب مع كامل عمليات CRUD المخصصة والآمنة
 │
 └── Views/                          # الواجهات
     ├── _ViewImports.cshtml         # التضمينات المشتركة والمساعدات TagHelpers
@@ -50,10 +52,10 @@ ContosoUniversity/
     │   └── About.cshtml            # صفحة تعريفية بالمشروع وواجب الويب
     ├── Students/
     │   ├── Index.cshtml            # عرض قائمة الطلاب ومفتاح التنقل لعمليات التعديل والحذف
-    │   ├── Details.cshtml          # تفاصيل الطالب مع سجل المقررات والتقديرات المسجلة
-    │   ├── Create.cshtml           # نموذج إضافة طالب جديد
-    │   ├── Edit.cshtml             # نموذج تعديل بيانات طالب
-    │   └── Delete.cshtml           # تأكيد حذف طالب
+    │   ├── Details.cshtml          # تفاصيل الطالب مع جدول المقررات والتقديرات المسجلة
+    │   ├── Create.cshtml           # نموذج إضافة طالب جديد مع حماية Overposting
+    │   ├── Edit.cshtml             # نموذج تعديل بيانات طالب بأسلوب Read-and-Update
+    │   └── Delete.cshtml           # تأكيد حذف طالب مع آلية التقاط وإظهار الأخطاء للمستخدم
     └── Shared/
         ├── _Layout.cshtml          # القالب العام وشريط التنقل الرئيسي وبصمة المطور
         ├── _ValidationScriptsPartial.cshtml
@@ -62,45 +64,40 @@ ContosoUniversity/
 
 ---
 
-### 3. ما تم تنفيذه خطوة بخطوة من ملف الشرح (Implemented Steps)
-
-1. **إنشاء مشروع الويب (Create Web App):**
-   - مشروع ASP.NET Core MVC كامل مهيأ للعمل مع أحدث بيئات التشغيل ومدعوم بالتوافق العالي.
-2. **تنسيق الموقع وتخصيص القالب (Set up site style):**
-   - تعديل `Views/Shared/_Layout.cshtml` وتحديث شريط التنقل ليشمل: (Home, About, Students, Courses, Instructors, Departments).
-   - إدراج توقيع وبصمة المهندس **Eng.Alhassan Ali Bahbah** في ترويسة وتذييل الموقع.
-   - إنشاء صفحة `Views/Home/Index.cshtml` وتزويدها بتعريف بالمشروع ورابط لصفحة الطلاب.
-3. **تثبيت حزم EF Core (NuGet Packages):**
-   - `Microsoft.EntityFrameworkCore.SqlServer`
-   - `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`
-4. **بناء نموذج البيانات (Create Data Model):**
-   - فئة `Student` مع مفتاح أساسي وخاصية تنقل `Enrollments`.
-   - فئة `Enrollment` مع مفتاح أساسي ومفاتيح أجنبية لـ Student و Course والتقدير كـ Enum قابل للقيمة الفارغة (`Grade?`).
-   - فئة `Course` مع خاصية `[DatabaseGenerated(DatabaseGeneratedOption.None)]` لإدخال معرف المادة يدويًا.
-5. **إنشاء سياق قاعدة البيانات (Database Context):**
-   - فئة `SchoolContext` ترث من `DbContext` وتعرف الـ `DbSet` للجداول الثلاثة.
-   - تجاوز دالة `OnModelCreating` لمنع جمع أسماء الجداول (`ToTable("Course")`, `ToTable("Enrollment")`, `ToTable("Student")`).
-6. **تسجيل السياق وسلسلة الاتصال (Register SchoolContext):**
-   - إضافة `AddDbContext<SchoolContext>` في `Program.cs`.
-   - إعداد سلسلة الاتصال `DefaultConnection` لـ SQL Server LocalDB في `appsettings.json`.
-   - إضافة فلتر استكشاف أخطاء قاعدة البيانات للمطورين `AddDatabaseDeveloperPageExceptionFilter`.
-7. **تغذية البيانات الأولية (Seed Database):**
-   - إنشاء فئة `DbInitializer` واستدعاء `context.Database.EnsureCreated()`.
-   - إضافة الطلاب والمقررات والتسجيلات المذكورة في الدليل، وإدراج الطالب المهندس: **Eng.Alhassan Ali Bahbah** ضمن البيانات الأولية.
-   - استدعاء التهيئة عند بدء تشغيل التطبيق في `Program.cs` مع معالجة الأخطاء عبر `try...catch` وتسجيل الأحداث `ILogger`.
-8. **إنشاء المتحكم وواجهات العرض (Scaffold Controller & Views):**
-   - متحكم `StudentsController` يعتمد أسلوب الحقن بالاعتماديات `SchoolContext`.
-   - دوال غير متزامنة بالكامل `async Task<IActionResult>` باستخدام `ToListAsync()`.
-   - واجهات Razor المتكاملة لجميع عمليات الاستعراض، التفاصيل، الإضافة، التعديل، والحذف.
+### 3. ما تم تنفيذه في الدرس الأول (Tutorial 01):
+1. **إنشاء مشروع الويب:** مشروع ASP.NET Core MVC كامل مهيأ للعمل بنظام .NET مع التوافقية العالية.
+2. **تنسيق الموقع والقالب العام (`_Layout.cshtml`):** تحديث شريط التنقل، إدراج الروابط المطلوبة، وإضافة توقيع وبصمة **Eng.Alhassan Ali Bahbah** في الترويسة والتذييل.
+3. **تثبيت حزم EF Core:** تثبيت حزم `Microsoft.EntityFrameworkCore.SqlServer` و `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`.
+4. **بناء نماذج البيانات (Models):** بناء كيانات `Student`, `Course`, `Enrollment` وتعريف العلاقات.
+5. **إنشاء سياق قاعدة البيانات (`SchoolContext`):** وراثة `DbContext` وتخصيص أسماء الجداول لتكون مفردة.
+6. **تسجيل السياق والاتصال (`Program.cs`):** إعداد سلسلة الاتصال لـ SQL Server LocalDB وفلتر الأخطاء.
+7. **تغذية البيانات الأولية (`DbInitializer`):** إدراج بيانات الطلاب والمقررات والتسجيلات، وإدراج الطالب المهندس **Eng.Alhassan Ali Bahbah** بتقديرات ممتازة.
 
 ---
 
-### 4. التحقق الهيكلي والفحص البرمجي (Verification & Health Check)
+### 4. ما تم تنفيذه في الدرس الثاني (Tutorial 02 - تخصيص CRUD والأمان):
+1. **تخصيص صفحة التفاصيل (Customize Details):**
+   - استخدام `Include(s => s.Enrollments).ThenInclude(e => e.Course)` لتحميل البيانات المرتبطة في المقررات.
+   - تطبيق `AsNoTracking()` لتحسين الأداء وسرعة الاستعلام.
+   - تحديث واجهة `Views/Students/Details.cshtml` لتعرض جدولاً مفصلاً لجميع المقررات المسجلة للطالب وتقديراته.
+2. **تأمين صفحة الإضافة (Update Create Page & Overposting Protection):**
+   - إزالة `ID` من وسم `[Bind("EnrollmentDate,FirstMidName,LastName")]` لمنع هجمات التمرير الزائد (Overposting).
+   - إضافة كتلة `try-catch (DbUpdateException)` لمعالجة أخطاء تحديث قاعدة البيانات وإظهار رسائل ودية للمستخدم.
+3. **تأمين صفحة التعديل (Recommended Read-and-Update Pattern):**
+   - استبدال أسلوب الربط الافتراضي بأسلوب **Read and Update** الموصى به برمجياً وأمنياً من مايكروسوفت.
+   - استخدام الدالة `TryUpdateModelAsync<Student>` لتحديد الحقول المسموح بتحديثها فقط (`FirstMidName, LastName, EnrollmentDate`).
+   - معالجة استثناءات التحديث `DbUpdateException`.
+4. **تحديث صفحة الحذف ومعالجة الأخطاء (Update Delete Page):**
+   - تعديل دالة `HttpGet Delete` لتقبل معامل اختياري `saveChangesError` لعرض رسالة خطأ عند فشل الحذف.
+   - تعديل دالة `HttpPost DeleteConfirmed` لتطبيق أسلوب **Read-First** ومعالجة الأخطاء عبر إعادة التوجيه لصفحة الحذف مع إشعار بالخطأ.
+   - تحديث واجهة `Views/Students/Delete.cshtml` لعرض تنبيه الخطأ `@ViewData["ErrorMessage"]` في حال تعذر الحذف.
 
+---
+
+### 5. التحقق الهيكلي والفحص البرمجي (Verification & Health Check)
 - **فحص البناء والتجميع (Compilation Check):**
-  تم تنفيذ الأمر:
   ```powershell
-  dotnet build "ContosoUniversity.csproj"
+  dotnet build "ContosoUniversity.sln"
   ```
   **النتيجة:**
   ```text
@@ -108,35 +105,26 @@ ContosoUniversity/
       0 Warning(s)
       0 Error(s)
   ```
-- **فحص التشغيل المحلي (Runtime Validation):**
-  تم اختبار تشغيل خادم الويب المحلي وتأكيد استجابته للطلبات عبر المنفذ `5052`:
-  - صفحة البداية `http://localhost:5052/` تعمل بنجاح وتعرض بصمة المهندس **Eng.Alhassan Ali Bahbah**.
-  - صفحة `http://localhost:5052/Home/About` تعمل بنجاح.
-  - معالجة غياب خادم LocalDB على الجهاز الحالي تمت بسلاسة عبر كتلة `try...catch` المبرمجة بالدليل دون توقف الخادم.
+- **فحص التشغيل الفعلي (Runtime Validation):**
+  - استجابة خادم الويب واستعراض واجهات الموقع وتأكيد وجود بصمة المهندس **Eng.Alhassan Ali Bahbah**.
+  - سلامة جميع مسارات التوجيه والتنقل لعمليات CRUD.
 
 ---
 
-### 5. تعليمات التشغيل على جهاز آخر به Visual Studio (How to Run)
-
-عند نقل مجلد `ContosoUniversity` إلى الجهاز الآخر:
+### 6. تعليمات التشغيل على جهاز آخر به Visual Studio (How to Run)
 1. **طريقة Visual Studio (الأسهل والأسرع):**
-   - انقر مرتين على ملف الحل `ContosoUniversity.sln` لفتحه داخل Visual Studio.
+   - افتح ملف الحل `ContosoUniversity.sln`.
    - اضغط على المفتاح `Ctrl + F5` (Start Without Debugging).
-   - سيقوم Visual Studio تلقائيًا باستعادة الحزم، وإنشاء قاعدة البيانات على `(localdb)\mssqllocaldb` وتغذيتها بالبيانات، وفتح المتصفح مباشرة.
-   - انقر على تبويب **Students** في شريط التنقل العلوي لرؤية جدول الطلاب المسجلين متضمناً اسمك!
-
+   - سيقوم Visual Studio تلقائياً بإنشاء قاعدة البيانات على `(localdb)\mssqllocaldb` وتغذيتها بالبيانات وعرض الموقع، وتستطيع استعراض وتعديل وإضافة الطلاب مع تجربة ميزات الأمان الجديدة.
 2. **طريقة سطر الأوامر (CLI):**
    ```powershell
    cd "d:\هندسة الحاسوب\واجب الويب\ContosoUniversity"
    dotnet run
    ```
-   ثم افتح الرابط الظاهر في المتصفح.
-
 3. **استخدام MySQL (اختياري):**
-   إذا أردت فحص الجداول أو إنشائها داخل MySQL على هذا الجهاز أو غيره، يمكنك فتح ملف:
-   `ContosoUniversity_Database.sql`
-   وتنفيذه مباشرة في **MySQL Workbench** لإنشاء الجداول وإدخال كافة بيانات الطلاب والمقررات والتسجيلات فورًا.
+   - تم توفير ملف `ContosoUniversity_Database.sql` الجاهز للاستيراد المباشر في MySQL Workbench.
 
 ---
 **تاريخ الإنجاز:** 2026-11-19  
-**المطور:** Eng.Alhassan Ali Bahbah
+**المطور:** Eng.Alhassan Ali Bahbah  
+**المستودع البعيد:** [https://github.com/EngAlhassan404/Contoso-University](https://github.com/EngAlhassan404/Contoso-University)
