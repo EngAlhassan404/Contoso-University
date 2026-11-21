@@ -1,0 +1,52 @@
+## .gitignore for ASP.NET Core & Visual Studio
+## Developed by: Eng.Alhassan Ali Bahbah
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.useroptions
+
+# Databases (Local DB files if created locally)
+*.mdf
+*.ldf
+*.ndf
+*.db-shm
+*.db-wal
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Package restore artifacts
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Dotnet CLI tools
+.dotnet/
