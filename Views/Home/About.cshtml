@@ -1,52 +1,127 @@
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "عن المشروع والتوثيق | About";
 }
 
-<div class="container py-4">
-    <div class="row">
-        <div class="col-md-9">
-            <h2 class="mb-3 text-primary">About Contoso University</h2>
-            <div class="card p-4 shadow-sm mb-4">
-                <div class="alert alert-secondary mb-3">
-                    <h5 class="mb-1 text-dark"><strong>جامعة حضرموت | كلية الهندسة والبترول</strong></h5>
-                    <p class="mb-0 text-muted">قسم هندسة الحاسوب - المستوى الخامس (سنة التخرج) | واجب الويب</p>
-                </div>
-
-                <p class="lead">
-                    تطبيق ويب تعليمي شامل مطبق وفق دليلي مايكروسوفت:
-                    <br />
-                    <strong>1. Tutorial: Get started with EF Core in an ASP.NET MVC web app</strong>
-                    <br />
-                    <strong>2. Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core</strong>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Header Title Banner -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
+            <div>
+                <h2 class="mb-1 d-flex align-items-center gap-2">
+                    <span>📖</span>
+                    <span>توثيق مشروع Contoso University</span>
+                </h2>
+                <p class="text-muted mb-0">
+                    تطبيق عملي كامل وفق دليلي شركة مايكروسوفت (Tutorial 01 &amp; 02) في بيئة ASP.NET Core MVC &amp; EF Core
                 </p>
-                <hr />
-                <h5>الميزات والخصائص البرمجية المنفذة:</h5>
-                <ul>
-                    <li>بنية معمارية MVC متكاملة باستخدام ASP.NET Core و EF Core (Code-First).</li>
-                    <li>نماذج البيانات: <code>Student</code>, <code>Course</code>, <code>Enrollment</code> مع علاقات الربط.</li>
-                    <li>تخصيص أسماء الجداول المفردة وإعداد سياق البيانات <code>SchoolContext</code>.</li>
-                    <li>تغذية البيانات الأولية (Seeding) عبر <code>DbInitializer</code> وتضمين بيانات الطالب.</li>
-                    <li>عمليات CRUD متطورة وغير متزامنة <code>async/await</code> مع <code>ToListAsync()</code>.</li>
-                    <li>أمان متقدم ضد هجمات الـ Overposting باستخدام <code>TryUpdateModelAsync</code> و <code>Bind</code>.</li>
-                    <li>تحسين الأداء باستخدام استعلامات <code>AsNoTracking()</code> والتحميل المترابط <code>Include / ThenInclude</code>.</li>
-                    <li>معالجة استثناءات الحفظ والحذف <code>DbUpdateException</code> وإظهار التنبيهات المناسبة للمستخدم.</li>
-                </ul>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <div class="alert alert-primary mb-0">
-                            <strong>إعداد المهندس:</strong> الحسن علي باحبه
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="alert alert-success mb-0">
-                            <strong>إشراف:</strong> م/ عصمت فرج القبس
+            </div>
+            <div class="mt-2 mt-md-0">
+                <a asp-controller="Home" asp-action="Index" class="btn-brand-outline">
+                    <span>↩️</span>
+                    <span>العودة للرئيسية</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Academic Affiliation Card -->
+        <div class="luxury-card p-4 mb-4" style="background: linear-gradient(135deg, #FAF4ED 0%, #FFFFFF 100%);">
+            <div class="row align-items-center gy-3">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="stat-icon" style="background: #FFF; font-size: 2rem;">🏛️</div>
+                        <div>
+                            <h4 class="mb-1 text-dark">جامعة حضرموت &bull; كلية الهندسة والبترول</h4>
+                            <p class="mb-0 text-muted">قسم هندسة الحاسوب &bull; المستوى الخامس (سنة التخرج) &bull; واجب الويب 2026</p>
                         </div>
                     </div>
                 </div>
-                <div class="mt-3 text-muted small">
-                    <strong>تاريخ الإنجاز:</strong> 19 نوفمبر 2026م
+                <div class="col-md-4 text-md-end">
+                    <span class="badge" style="background: var(--brand-chestnut); color: #FFF; font-size: 0.9rem; padding: 10px 16px; border-radius: 50px;">
+                        🎓 مشروع تخرج عملي
+                    </span>
                 </div>
             </div>
+        </div>
+
+        <!-- Supervisor & Developer Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="luxury-card p-4 card-accent-top h-100">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="student-avatar" style="width: 50px; height: 50px; font-size: 1.4rem;">👨‍💻</div>
+                        <div>
+                            <small class="text-muted d-block">إعداد وبناء الطالب المهندس:</small>
+                            <h5 class="mb-0 fw-bold" style="color: var(--brand-chestnut);">الحسن علي باحبه</h5>
+                            <small class="text-success fw-bold">قسم هندسة الحاسوب - المستوى الخامس</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="luxury-card p-4 card-accent-top h-100">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="student-avatar" style="width: 50px; height: 50px; font-size: 1.4rem; background: linear-gradient(135deg, #2E6F40, #4D7C59);">🎖️</div>
+                        <div>
+                            <small class="text-muted d-block">تحت إشراف وتوجيه الأستاذ:</small>
+                            <h5 class="mb-0 fw-bold" style="color: var(--brand-chestnut);">م/ عصمت فرج القبس</h5>
+                            <small class="text-muted">مدرس مساق هندسة وتطبيقات الويب</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Specifications Card -->
+        <div class="luxury-card p-4 mb-4">
+            <h4 class="mb-3 d-flex align-items-center gap-2">
+                <span>🛡️</span>
+                <span>المعايير التقنية والأمنية المنفذة بدقة بالمشروع</span>
+            </h4>
+            
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3" style="background: #FDFBF7; border: 1px solid var(--brand-border);">
+                        <h6 class="fw-bold text-dark d-flex align-items-center gap-2">
+                            <span>1️⃣</span>
+                            <span>الدرس الأول (Tutorial 01): التهيئة والهيكلة وقاعدة البيانات</span>
+                        </h6>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li>إنشاء مشروع ASP.NET Core MVC بحزم EF Core الرسمية.</li>
+                            <li>بناء نماذج الكيانات: <code>Student</code>, <code>Course</code>, <code>Enrollment</code>.</li>
+                            <li>تخصيص أسماء الجداول المفردة وسياق البيانات <code>SchoolContext</code>.</li>
+                            <li>الربط المباشر مع <strong>Microsoft SQL Server LocalDB</strong> (قاعدة بيانات حقيقية).</li>
+                            <li>تغذية البيانات الأولية (Seeding) عبر فئة <code>DbInitializer</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3" style="background: #FDFBF7; border: 1px solid var(--brand-border);">
+                        <h6 class="fw-bold text-dark d-flex align-items-center gap-2">
+                            <span>2️⃣</span>
+                            <span>الدرس الثاني (Tutorial 02): الأمان والـ CRUD المتقدم</span>
+                        </h6>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li>حماية قصوى ضد هجمات الـ Overposting باستخدام <code>TryUpdateModelAsync</code>.</li>
+                            <li>تحسين كفاءة وسرعة القراءة باستعلامات <code>AsNoTracking()</code> غير المتزامنة.</li>
+                            <li>استخدام <code>Include</code> و <code>ThenInclude</code> لتحميل المقررات والدرجات.</li>
+                            <li>معالجة استثناءات التحديث <code>DbUpdateException</code> برسائل للمستخدم.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4" style="border-color: var(--brand-border);" />
+
+            <!-- UI/UX and System Architecture -->
+            <h5 class="mb-3 d-flex align-items-center gap-2">
+                <span>🖥️</span>
+                <span>تصميم واجهة المستخدم وتجربة التصفح (UI/UX)</span>
+            </h5>
+            <p class="text-muted mb-0">
+                تم اعتماد تصميم عصري متناسق يعتمد لوحة ألوان ترابية دافئة مريحة للعين، مع خطوط طباعية عالية الوضوح (Cairo &amp; Plus Jakarta Sans)، وتكامل كامل مع إيموجيات تعبيرية وأيقونات تفاعلية لتسهيل وصول الطالب والمدرس لكافة وظائف النظام والعمليات الأكاديمية بسلاسة وسرعة، مع التوافق التام مع مختلف أحجام الشاشات.
+            </p>
         </div>
     </div>
 </div>

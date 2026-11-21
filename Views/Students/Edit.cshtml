@@ -1,38 +1,70 @@
 @model ContosoUniversity.Models.Student
 
 @{
-    ViewData["Title"] = "Edit Student";
+    ViewData["Title"] = "تعديل بيانات الطالب | Edit Student";
 }
 
-<h1>Edit Student</h1>
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                <span>✏️</span>
+                <span>تعديل بيانات الطالب</span>
+            </h3>
+            <a asp-action="Index" class="btn-brand-outline">
+                <span>&rarr;</span>
+                <span>العودة للقائمة</span>
+            </a>
+        </div>
 
-<h4>Student</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
-            <div class="mb-3">
-                <label asp-for="LastName" class="form-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+        <div class="form-card card-accent-top">
+            <div class="d-flex align-items-center gap-2 mb-3 p-2 rounded-3" style="background: var(--brand-surface-warm);">
+                <span class="fs-4">🆔</span>
+                <span class="small text-muted">تعديل سجل الطالب رقم: <strong class="text-dark">#@Model.ID</strong></span>
             </div>
-            <div class="mb-3">
-                <label asp-for="FirstMidName" class="form-label"></label>
-                <input asp-for="FirstMidName" class="form-control" />
-                <span asp-validation-for="FirstMidName" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="EnrollmentDate" class="form-label"></label>
-                <input asp-for="EnrollmentDate" class="form-control" type="date" />
-                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-            </div>
-        </form>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger p-2 small mb-3"></div>
+                <input type="hidden" asp-for="ID" />
+
+                <div class="mb-3">
+                    <label asp-for="FirstMidName" class="form-label d-flex align-items-center gap-1">
+                        <span>👤</span>
+                        <span>الاسم الأول (First &amp; Middle Name):</span>
+                    </label>
+                    <input asp-for="FirstMidName" class="form-control" />
+                    <span asp-validation-for="FirstMidName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label d-flex align-items-center gap-1">
+                        <span>🏷️</span>
+                        <span>اللقب / اسم العائلة (Last Name):</span>
+                    </label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="EnrollmentDate" class="form-label d-flex align-items-center gap-1">
+                        <span>📅</span>
+                        <span>تاريخ الالتحاق والتسجيل (Enrollment Date):</span>
+                    </label>
+                    <input asp-for="EnrollmentDate" class="form-control" type="date" value="@Model.EnrollmentDate.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="EnrollmentDate" class="text-danger small"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-brand-primary">
+                        <span>💾</span>
+                        <span>حفظ التعديلات</span>
+                    </button>
+                    <a asp-action="Index" class="btn-brand-soft">
+                        <span>إلغاء</span>
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

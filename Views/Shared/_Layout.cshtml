@@ -1,66 +1,114 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Contoso University</title>
+    <title>@ViewData["Title"] - Contoso University | جامعة كونتوسو</title>
+    
+    <!-- Google Fonts: Cairo & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS & Bootstrap Icons -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%233E2419'/><text y='65' x='18' font-size='50'>🎓</text></svg>">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand fw-bold text-primary" asp-area="" asp-controller="Home" asp-action="Index">Contoso University</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container-fluid px-xl-5 px-lg-4 px-3">
+                <a class="navbar-brand navbar-brand-badge me-3" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="brand-icon-emblem">🎓</span>
+                    <span>Contoso <span class="brand-title-accent">University</span></span>
+                </a>
+                
+                <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainCollapse" aria-controls="navbarMainCollapse"
+                        aria-expanded="false" aria-label="تبديل القائمة">
+                    <span class="bi bi-list fs-2" style="color: var(--brand-hazel-glow);"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                
+                <div class="navbar-collapse collapse" id="navbarMainCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link-custom" asp-area="" asp-controller="Home" asp-action="Index">
+                                <span>🏠</span><span>الرئيسية</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link-custom" asp-area="" asp-controller="Students" asp-action="Index">
+                                <span>👨‍🎓</span><span>إدارة الطلاب</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
+                            <a class="nav-link-custom" asp-area="" asp-controller="Courses" asp-action="Index">
+                                <span>📚</span><span>المقررات</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Instructors" asp-action="Index">Instructors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Departments" asp-action="Index">Departments</a>
+                            <a class="nav-link-custom" asp-area="" asp-controller="Home" asp-action="About">
+                                <span>ℹ️</span><span>عن المشروع</span>
+                            </a>
                         </li>
                     </ul>
-                    <span class="navbar-text text-muted small">
-                        إعداد: <strong>م. الحسن باحبه</strong> | إشراف: <strong>م/ عصمت القبس</strong>
-                    </span>
+                    
+                    <div class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-3 flex-shrink-0">
+                        <div class="author-header-pill">
+                            <span>👨‍💻 إعداد: <strong>م. الحسن باحبه</strong></span>
+                            <span class="text-white-50">|</span>
+                            <span>🎖️ إشراف: <strong>م/ عصمت القبس</strong></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container my-4 flex-grow-1">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted mt-4 py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div>
-                &copy; 2026 - Contoso University - إعداد المهندس: <strong>الحسن علي باحبه</strong> | إشراف: <strong>م/ عصمت فرج القبس</strong>
-            </div>
-            <div>
-                <a asp-area="" asp-controller="Home" asp-action="About">About</a> | 
-                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="custom-footer">
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <div class="footer-brand-title">
+                        <span class="brand-icon-emblem" style="width: 34px; height: 34px; font-size: 1rem;">🎓</span>
+                        <span>Contoso University &bull; جامعة حضرموت</span>
+                    </div>
+                    <p class="mb-2 text-white-50 small">
+                        كلية الهندسة والبترول &bull; قسم هندسة الحاسوب &bull; المستوى الخامس (سنة التخرج) &bull; واجب الويب
+                    </p>
+                    <div class="footer-signature small">
+                        بصمة وتطوير المهندس: <strong>الحسن علي باحبه</strong> | إشراف الأستاذ: <strong>م/ عصمت فرج القبس</strong>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center text-lg-end">
+                    <div class="footer-links mb-2">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">🏠 الرئيسية</a> &bull;
+                        <a asp-area="" asp-controller="Students" asp-action="Index">👨‍🎓 الطلاب</a> &bull;
+                        <a asp-area="" asp-controller="Courses" asp-action="Index">📚 المقررات</a> &bull;
+                        <a asp-area="" asp-controller="Home" asp-action="About">ℹ️ توثيق المشروع</a>
+                    </div>
+                    <div class="text-white-50 small mt-2">
+                        <span>مشروع تطبيقي لمساق هندسة وتطبيقات الويب &bull; ASP.NET Core &amp; EF Core</span>
+                        <br />
+                        <span>جميع الحقوق محفوظة &copy; 2026 - جامعة حضرموت</span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

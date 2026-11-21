@@ -13,8 +13,17 @@ using System;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<SchoolContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
+if (connectionString.Contains(".db", StringComparison.OrdinalIgnoreCase) || connectionString.StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
+{
+    builder.Services.AddDbContext<SchoolContext>(options =>
+        options.UseSqlite(connectionString));
+}
+else
+{
+    builder.Services.AddDbContext<SchoolContext>(options =>
+        options.UseSqlServer(connectionString));
+}
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

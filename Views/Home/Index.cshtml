@@ -1,58 +1,205 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "الرئيسية | Home";
 }
 
-<div class="p-5 mb-4 bg-light rounded-3 border">
-    <div class="container-fluid py-4">
-        <h1 class="display-5 fw-bold text-primary">Contoso University</h1>
-        <p class="col-md-8 fs-4">
-            تطبيق عملي متقدم لـ Entity Framework Core في بيئة ASP.NET Core MVC (الدرسين 01 و 02).
-        </p>
-        <div class="d-flex flex-wrap gap-2">
-            <span class="badge bg-primary p-2 fs-6">إعداد المهندس: الحسن علي باحبه</span>
-            <span class="badge bg-success p-2 fs-6">إشراف: م/ عصمت فرج القبس</span>
-            <span class="badge bg-secondary p-2 fs-6">جامعة حضرموت - كلية الهندسة والبترول</span>
+<!-- Hero Luxury Banner -->
+<div class="hero-luxury-banner">
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <div class="hero-badge-tag">
+                <span>✨</span>
+                <span>جامعة حضرموت &bull; قسم هندسة الحاسوب &bull; واجب الويب 2026</span>
+            </div>
+            
+            <h1 class="hero-title">
+                نظام <span class="hero-gradient-text">Contoso University</span> الذكي
+            </h1>
+            
+            <p class="hero-description">
+                تطبيق أكاديمي متطور مبني بإتقان على إطار العمل <strong>ASP.NET Core MVC</strong> وتقنية <strong>Entity Framework Core</strong> بنمط Code-First، مع ربط كامل وتكامل مباشر مع قاعدة بيانات <strong>Microsoft SQL Server LocalDB</strong> وحماية متقدمة لعمليات CRUD.
+            </p>
+            
+            <div class="d-flex flex-wrap gap-3">
+                <a class="btn-brand-primary" asp-controller="Students" asp-action="Index">
+                    <span>👨‍🎓</span>
+                    <span>استعراض وإدارة الطلاب</span>
+                </a>
+                
+                <a class="btn-brand-secondary" asp-controller="Courses" asp-action="Index">
+                    <span>📚</span>
+                    <span>دليل المقررات الدراسية</span>
+                </a>
+
+                <a class="btn-brand-outline text-white border-light" asp-controller="Home" asp-action="About">
+                    <span>ℹ️</span>
+                    <span>تفاصيل التوثيق الأكاديمي</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 d-none d-lg-block text-center">
+            <div class="p-4 rounded-4" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(224, 159, 94, 0.3); backdrop-filter: blur(10px);">
+                <div class="display-3 mb-2">🏛️</div>
+                <h5 class="text-white fw-bold">نظام Contoso الأكاديمي</h5>
+                <p class="text-white-50 small mb-0">
+                    تكامل متكامل مع Microsoft SQL Server LocalDB و Entity Framework Core مع حماية تامة لعمليات CRUD.
+                </p>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4 mb-3">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h4 class="card-title text-primary">Welcome to Contoso University</h4>
-                <p class="card-text">
-                    تطبيق جامعي نموذجي لإدارة بيانات الطلاب والمقررات والتسجيلات مع تطبيق كامل لمفاهيم الأمان ومنع Overposting.
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-0 pb-3">
-                <a class="btn btn-outline-primary" asp-controller="Students" asp-action="Index">إدارة الطلاب (Students) &raquo;</a>
+<!-- Quick Stat Counters -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-box">
+            <div class="stat-icon">👨‍🎓</div>
+            <div>
+                <div class="stat-number">9+</div>
+                <div class="stat-label">الطلاب المسجلين بقاعدة البيانات</div>
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h4 class="card-title text-success">Build it from scratch</h4>
-                <p class="card-text">
-                    تم بناء المشروع خطوة بخطوة بالاعتماد على أدلة مايكروسوفت التعليمية الرسمية مع التحقق الهيكلي الكامل.
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-0 pb-3">
-                <a class="btn btn-outline-success" href="https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro" target="_blank">دليل Microsoft Learn &raquo;</a>
+    
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-box">
+            <div class="stat-icon">📚</div>
+            <div>
+                <div class="stat-number">7</div>
+                <div class="stat-label">مقررات دراسية معتمدة</div>
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h4 class="card-title text-secondary">عن المشروع والتوثيق</h4>
-                <p class="card-text">
-                    مشروع واجب الويب لطلاب المستوى الخامس (سنة التخرج) - قسم هندسة الحاسوب، جامعة حضرموت.
+
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-box">
+            <div class="stat-icon">🗄️</div>
+            <div>
+                <div class="stat-number">LocalDB</div>
+                <div class="stat-label">قاعدة بيانات MS SQL Server حقيقية</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-box">
+            <div class="stat-icon">⚡</div>
+            <div>
+                <div class="stat-number">EF Core</div>
+                <div class="stat-label">استعلامات AsNoTracking محسنة</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Database & System Architecture Section -->
+<div class="luxury-card p-4 mb-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="mb-1 d-flex align-items-center gap-2">
+                <span>🗄️</span>
+                <span>بنية النظام والتكامل مع قاعدة البيانات (Database Architecture)</span>
+            </h4>
+            <p class="text-muted small mb-0">
+                جميع بيانات النظام مسجلة ومستوردة بشكل حي وتفاعلي من قاعدة البيانات المحلية Microsoft SQL Server LocalDB
+            </p>
+        </div>
+        <span class="badge" style="background-color: var(--brand-caramel); color: #fff; padding: 8px 14px; font-size: 0.85rem; border-radius: 50px;">
+            ⚡ EF Core 8.0 &bull; Code-First
+        </span>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="p-3 rounded-3 h-100" style="background: var(--brand-surface-warm); border: 1px solid var(--brand-border);">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fs-4">📋</span>
+                    <h6 class="fw-bold mb-0 text-dark">جدول الطلاب (Student)</h6>
+                </div>
+                <p class="text-muted small mb-0">
+                    يحفظ الاسم الأول واللقب وتاريخ الالتحاق مع ربط علاقة <code>One-to-Many</code> بجدول التسجيلات والدرجات.
                 </p>
             </div>
-            <div class="card-footer bg-transparent border-0 pb-3">
-                <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="About">تفاصيل المشروع &raquo;</a>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 rounded-3 h-100" style="background: var(--brand-surface-warm); border: 1px solid var(--brand-border);">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fs-4">📘</span>
+                    <h6 class="fw-bold mb-0 text-dark">جدول المقررات (Course)</h6>
+                </div>
+                <p class="text-muted small mb-0">
+                    يحتوي على رمز المقرر والساعات الدراسية وعنوان المقرر، مع تخصيص <code>DatabaseGenerated(None)</code> للمفتاح الرئيسي.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 rounded-3 h-100" style="background: var(--brand-surface-warm); border: 1px solid var(--brand-border);">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fs-4">🔗</span>
+                    <h6 class="fw-bold mb-0 text-dark">جدول التسجيلات (Enrollment)</h6>
+                </div>
+                <p class="text-muted small mb-0">
+                    جدول وسيط يربط بين الطلاب والمقررات ويسجل التقدير الأكاديمي (Grade A, B, C, F) مع مفاتيح خارجية أجنبية (Foreign Keys).
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Action & Feature Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 luxury-card card-accent-top p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="stat-icon" style="background: #FAF3EC; color: var(--brand-caramel);">👨‍🎓</div>
+                <h4 class="mb-0">إدارة سجلات الطلاب</h4>
+            </div>
+            <p class="text-muted flex-grow-1">
+                عرض شامل لجميع الطلاب، تفاصيل المقررات المسجلة والتقديرات الأكاديمية لكل طالب، مع عمليات الإضافة والتعديل والحذف الآمنة (CRUD).
+            </p>
+            <div class="mt-3">
+                <a class="btn-brand-primary w-100 justify-content-center" asp-controller="Students" asp-action="Index">
+                    <span>الانتقال لقائمة الطلاب</span>
+                    <span>&larr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-100 luxury-card card-accent-top p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="stat-icon" style="background: #F8F3EC; color: var(--brand-chestnut);">📚</div>
+                <h4 class="mb-0">دليل المقررات الدراسية</h4>
+            </div>
+            <p class="text-muted flex-grow-1">
+                استعراض المقررات المعتمدة في كلية الهندسة مع الساعات الدراسية، والتحقق من كفاءة ربط العلاقات بالنماذج عبر Entity Framework Core.
+            </p>
+            <div class="mt-3">
+                <a class="btn-brand-secondary w-100 justify-content-center" asp-controller="Courses" asp-action="Index">
+                    <span>استعراض المقررات</span>
+                    <span>&larr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-12">
+        <div class="card h-100 luxury-card card-accent-top p-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="stat-icon" style="background: #EAF5ED; color: var(--brand-success);">🏛️</div>
+                <h4 class="mb-0">التوثيق وتفاصيل الإنجاز</h4>
+            </div>
+            <p class="text-muted flex-grow-1">
+                بيان تفصيلي لخطوات التطبيق العملي لدروس مايكروسوفت الرسمية، وتطبيق متطلبات المهندس المشرف وقسم هندسة الحاسوب.
+            </p>
+            <div class="mt-3">
+                <a class="btn-brand-outline w-100 justify-content-center" asp-controller="Home" asp-action="About">
+                    <span>قراءة تقرير المشروع</span>
+                    <span>&larr;</span>
+                </a>
             </div>
         </div>
     </div>

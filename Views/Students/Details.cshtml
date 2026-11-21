@@ -1,74 +1,168 @@
 @model ContosoUniversity.Models.Student
 
 @{
-    ViewData["Title"] = "Student Details";
+    ViewData["Title"] = "تفاصيل الطالب | Student Details";
+    var isSpecial = Model.LastName != null && Model.LastName.Contains("Bahbah");
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Student Details</h1>
-    <span class="badge bg-secondary">Eng.Alhassan Ali Bahbah</span>
-</div>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Breadcrumb / Back Navigation -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <a asp-action="Index" class="btn-brand-outline">
+                    <span>&rarr;</span>
+                    <span>العودة لقائمة الطلاب</span>
+                </a>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.ID" class="btn-brand-primary">
+                    <span>✏️</span>
+                    <span>تعديل بيانات الطالب</span>
+                </a>
+            </div>
+        </div>
 
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstMidName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstMidName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EnrollmentDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EnrollmentDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Enrollments)
-        </dt>
-        <dd class="col-sm-10">
-            <table class="table table-bordered table-striped">
-                <thead class="table-light">
-                    <tr>
-                        <th>Course Title</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Enrollments != null && Model.Enrollments.Any())
-                    {
-                        @foreach (var item in Model.Enrollments)
-                        {
+        <!-- Student Profile Overview Card -->
+        <div class="luxury-card p-4 card-accent-top mb-4">
+            <div class="row align-items-center gy-3">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="student-avatar" style="width: 64px; height: 64px; font-size: 1.8rem; @(isSpecial ? "background: linear-gradient(135deg, #2E6F40, #4D7C59);" : "")">
+                            @(isSpecial ? "⭐" : (!string.IsNullOrEmpty(Model.FirstMidName) ? Model.FirstMidName.Substring(0, 1) : "S"))
+                        </div>
+                        <div>
+                            <h3 class="mb-1 fw-bold text-dark">
+                                @Model.FirstMidName @Model.LastName
+                            </h3>
+                            <div class="d-flex flex-wrap gap-2 align-items-center">
+                                <span class="badge" style="background: var(--brand-surface-warm); color: var(--brand-brown-mid); border: 1px solid var(--brand-border);">
+                                    🆔 المعرف الأكاديمي: #@Model.ID
+                                </span>
+                                <span class="badge" style="background: #FDF4E6; color: var(--brand-caramel); border: 1px solid #E8C18C;">
+                                    📅 تاريخ التسجيل: @Model.EnrollmentDate.ToString("yyyy-MM-dd")
+                                </span>
+                                @if (isSpecial) {
+                                    <span class="badge bg-success">
+                                        👨‍💻 مهندس ومطور المشروع
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-md-end">
+                    <div class="stat-box d-inline-flex p-3">
+                        <div class="stat-icon" style="font-size: 1.4rem; width: 44px; height: 44px;">📚</div>
+                        <div class="text-start">
+                            <div class="stat-number" style="font-size: 1.4rem;">
+                                @(Model.Enrollments != null ? Model.Enrollments.Count : 0)
+                            </div>
+                            <div class="stat-label">المقررات المسجلة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enrolled Courses Section -->
+        <div class="luxury-card p-4 mb-4">
+            <h4 class="mb-3 d-flex align-items-center gap-2">
+                <span>📊</span>
+                <span>المقررات الدراسية والتقديرات المسجلة</span>
+            </h4>
+
+            @if (Model.Enrollments != null && Model.Enrollments.Any())
+            {
+                <div class="custom-table-container">
+                    <table class="table table-custom align-middle">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Course.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Grade)
-                                </td>
+                                <th style="width: 50%;">
+                                    <span class="d-inline-flex align-items-center gap-1">
+                                        <span>📘</span>
+                                        <span>اسم المقرر الدراسي (Course Title)</span>
+                                    </span>
+                                </th>
+                                <th style="width: 25%;">
+                                    <span class="d-inline-flex align-items-center gap-1">
+                                        <span>🔢</span>
+                                        <span>رمز المقرر</span>
+                                    </span>
+                                </th>
+                                <th class="text-center" style="width: 25%;">
+                                    <span class="d-inline-flex align-items-center gap-1">
+                                        <span>🏆</span>
+                                        <span>التقدير الأكاديمي (Grade)</span>
+                                    </span>
+                                </th>
                             </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="2" class="text-muted">No enrollments recorded for this student.</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ID" class="btn btn-primary">Edit</a>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Enrollments)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="fw-bold text-dark">
+                                            @Html.DisplayFor(modelItem => item.Course.Title)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: var(--brand-surface-warm); color: var(--brand-brown-mid); border: 1px solid var(--brand-border);">
+                                            #@item.Course.CourseID (@item.Course.Credits ساعات)
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.Grade.HasValue)
+                                        {
+                                            var gradeStr = item.Grade.Value.ToString();
+                                            switch (gradeStr)
+                                            {
+                                                case "A":
+                                                    <span class="grade-pill grade-pill-A">
+                                                        <span>🌟</span>
+                                                        <span>امتياز (Grade A)</span>
+                                                    </span>
+                                                    break;
+                                                case "B":
+                                                    <span class="grade-pill grade-pill-B">
+                                                        <span>🌿</span>
+                                                        <span>جيد جداً (Grade B)</span>
+                                                    </span>
+                                                    break;
+                                                case "C":
+                                                    <span class="grade-pill grade-pill-C">
+                                                        <span>🍁</span>
+                                                        <span>جيد (Grade C)</span>
+                                                    </span>
+                                                    break;
+                                                default:
+                                                    <span class="grade-pill grade-pill-F">
+                                                        <span>⚠️</span>
+                                                        <span>راسب (@gradeStr)</span>
+                                                    </span>
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted small">قيد الدراسة (No Grade)</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="p-4 text-center rounded-3" style="background: var(--brand-surface-warm); border: 1px dashed var(--brand-border);">
+                    <div class="fs-1 mb-2">📋</div>
+                    <p class="text-muted mb-0">لا توجد مقررات دراسية مسجلة لهذا الطالب حالياً.</p>
+                </div>
+            }
+        </div>
+    </div>
 </div>
